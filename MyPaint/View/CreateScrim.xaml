@@ -1,0 +1,14 @@
+﻿<Window x:Class="MyPaint.View.CreateScrim"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyPaint.View"
+        mc:Ignorable="d"
+        Title="CreateScrim" Height="179.534" Width="290.305">
+    <Grid>
+        <Label Content="Введите название холста" Margin="44,10,54,90" FontSize="14" FontWeight="Bold"></Label>
+        <TextBox Text="{Binding Path=Name}" HorizontalAlignment="Left" Height="29" Margin="31,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216"/>
+        <Button Margin="147,86,35,29" Content="Создать" Name="btn_CreateScrim" Click="btn_CreateScrim_Click" Height="25"/>
+    </Grid>
+</Window>

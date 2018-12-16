@@ -1,0 +1,38 @@
+﻿<Window x:Class="MyPaint.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyPaint"
+        mc:Ignorable="d"
+        Title="MyPaint" Height="450" Width="800">
+    <Grid>
+        <InkCanvas x:Name="inkCanvas1" HorizontalAlignment="Left" Height="271" Margin="10,10,0,0" VerticalAlignment="Top" Width="654">
+            
+        </InkCanvas>
+        <Button x:Name="btn_Select" Content="Выделить" HorizontalAlignment="Left" Margin="683,40,0,0" VerticalAlignment="Top" Width="86" Click="btn_Select_Click" Height="28"/>
+        <Button Content="Отчистить" Click="Button_Click" HorizontalAlignment="Left" Height="25" Margin="682,317,0,0" VerticalAlignment="Top" Width="87"/>
+        <Button x:Name="btn_Close" Content="Закрыть" HorizontalAlignment="Left" Margin="683,368,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="btn_Close_Click" />
+        <Button x:Name="btn_Save" Content="Сохранить" HorizontalAlignment="Left" Margin="578,317,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="btn_Save_Click" />
+        <Button x:Name="btn_Paint" Content="Рисовать" HorizontalAlignment="Left" Height="25" Margin="683,84,0,0" VerticalAlignment="Top" Width="86" Click="btn_Paint_Click"/>
+        <Button x:Name="btn_Eraser" Content="Ластик" HorizontalAlignment="Left" Height="27" Margin="683,128,0,0" VerticalAlignment="Top" Width="86" Click="btn_Eraser_Click"/>
+
+        <Slider x:Name="sld_RedColor" Background="Red" Minimum="0" Maximum="255" HorizontalAlignment="Left" Height="17" Margin="21,317,0,0" VerticalAlignment="Top" Width="248"/>
+        <Slider x:Name="sld_GreenColor" Background="Green" Minimum="0" Maximum="255" HorizontalAlignment="Left" Height="17" Margin="21,352,0,0" VerticalAlignment="Top" Width="248"/>
+        <Slider x:Name="sld_BlueColor" Background="Blue" Minimum="0" Maximum="255" HorizontalAlignment="Left" Height="17" Margin="21,385,0,0" VerticalAlignment="Top" Width="248"/>
+        <Label x:Name="lbl1" Content="Выбранный цвет" HorizontalAlignment="Left" Margin="133,286,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.313,-1.735"/>
+        <Button x:Name="btn_AddText" Content="Добавить текст" HorizontalAlignment="Left" Height="26" Margin="683,173,0,0" VerticalAlignment="Top" Width="86" Click="btn_AddText_Click"/>
+
+        <Rectangle Margin="295,317,251,25">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="Yellow" Offset="0.0" />
+                    <GradientStop Color="Red" Offset="0.25" />
+                    <GradientStop Color="Blue" Offset="0.75" />
+                    <GradientStop Color="LimeGreen" Offset="1.0" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+    </Grid>
+</Window>
