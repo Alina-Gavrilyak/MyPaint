@@ -7,32 +7,67 @@
         mc:Ignorable="d"
         Title="MyPaint" Height="450" Width="800">
     <Grid>
-        <InkCanvas x:Name="inkCanvas1" HorizontalAlignment="Left" Height="271" Margin="10,10,0,0" VerticalAlignment="Top" Width="654">
-            
-        </InkCanvas>
-        <Button x:Name="btn_Select" Content="Выделить" HorizontalAlignment="Left" Margin="683,40,0,0" VerticalAlignment="Top" Width="86" Click="btn_Select_Click" Height="28"/>
-        <Button Content="Отчистить" Click="Button_Click" HorizontalAlignment="Left" Height="25" Margin="682,317,0,0" VerticalAlignment="Top" Width="87"/>
-        <Button x:Name="btn_Close" Content="Закрыть" HorizontalAlignment="Left" Margin="683,368,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="btn_Close_Click" />
-        <Button x:Name="btn_Save" Content="Сохранить" HorizontalAlignment="Left" Margin="578,317,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="btn_Save_Click" />
-        <Button x:Name="btn_Paint" Content="Рисовать" HorizontalAlignment="Left" Height="25" Margin="683,84,0,0" VerticalAlignment="Top" Width="86" Click="btn_Paint_Click"/>
-        <Button x:Name="btn_Eraser" Content="Ластик" HorizontalAlignment="Left" Height="27" Margin="683,128,0,0" VerticalAlignment="Top" Width="86" Click="btn_Eraser_Click"/>
 
-        <Slider x:Name="sld_RedColor" Background="Red" Minimum="0" Maximum="255" HorizontalAlignment="Left" Height="17" Margin="21,317,0,0" VerticalAlignment="Top" Width="248"/>
-        <Slider x:Name="sld_GreenColor" Background="Green" Minimum="0" Maximum="255" HorizontalAlignment="Left" Height="17" Margin="21,352,0,0" VerticalAlignment="Top" Width="248"/>
-        <Slider x:Name="sld_BlueColor" Background="Blue" Minimum="0" Maximum="255" HorizontalAlignment="Left" Height="17" Margin="21,385,0,0" VerticalAlignment="Top" Width="248"/>
-        <Label x:Name="lbl1" Content="Выбранный цвет" HorizontalAlignment="Left" Margin="133,286,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.313,-1.735"/>
-        <Button x:Name="btn_AddText" Content="Добавить текст" HorizontalAlignment="Left" Height="26" Margin="683,173,0,0" VerticalAlignment="Top" Width="86" Click="btn_AddText_Click"/>
+        <InkCanvas x:Name="inkCanvas1" HorizontalAlignment="Left" Height="399" Margin="55,10,0,0" VerticalAlignment="Top" Width="665"/>
 
-        <Rectangle Margin="295,317,251,25">
-            <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="Yellow" Offset="0.0" />
-                    <GradientStop Color="Red" Offset="0.25" />
-                    <GradientStop Color="Blue" Offset="0.75" />
-                    <GradientStop Color="LimeGreen" Offset="1.0" />
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
+
+        <Expander Margin="0,0,737,189" ExpandDirection="Right">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" x:Name="btnBlackColor"  Content="" Background="Black" Click="btnBlackColor_Click"/>
+                <Button Grid.Row="1" x:Name="btnRedColor" Click="btnRedColor_Click" Content="" Background="Red"/>
+                <Button Grid.Row="2" x:Name="btnOrangeColor"  Content="" Background="Orange"  VerticalAlignment="Top"   Click="btnOrangeColor_Click" Height="28"/>
+                <Button Grid.Row="5" x:Name="btnBlueColor"  Content="" Background="Blue" Click="btnBlueColor_Click"/>
+                <Button Grid.Row="3" x:Name="btnYellowColor"  Content="" Background="Yellow" Click="btnYellowColor_Click"/>
+                <Button Grid.Row="4" x:Name="btnGreenColor"  Content="" Background="Green" Click="btnGreenColor_Click"/>
+                <Button Grid.Row="6" x:Name="btnDarkBlueColor"  Content="" Background="DarkBlue" Click="btnDarkBlueColor_Click" />
+                <Button Grid.Row="7" x:Name="btnVioletColor"  Content="" Background="Violet" Click="btnVioletColor_Click" />
+            </Grid>
+        </Expander>
+
+        <Expander ExpandDirection="Left" Margin="725,0,0,169" >
+            <Grid Margin="0,10,0,-2" Width="36">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+
+                </Grid.RowDefinitions>
+                <Button Grid.Row="5" x:Name="btn_Save" HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="btn_Save_Click" Background="White" BorderBrush="#FF939292">
+                    <Image Source="../Resources/save.png"></Image>
+                </Button>
+
+                <Button  Grid.Row="4" Click="Button_Click" HorizontalAlignment="Left"   VerticalAlignment="Top"  BorderBrush="#FFB4ACAC" Background="White">
+                    <Image Source="../Resources/clear.png"></Image>
+                </Button>
+                <Button Grid.Row="3" x:Name="btn_AddText"  HorizontalAlignment="Left"   VerticalAlignment="Top"  Click="btn_AddText_Click" Background="White" BorderBrush="#FF999595">
+                    <Image Source="../Resources/add-text.png"></Image>
+                </Button>
+                <Button Grid.Row="1" x:Name="btn_Eraser"  HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="btn_Eraser_Click"  Background="White" BorderBrush="#FF7C7979">
+                    <Image Source="../Resources/eraser.png"></Image>
+                </Button>
+                <Button Grid.Row="0" x:Name="btn_Paint"  HorizontalAlignment="Left"   VerticalAlignment="Top"  Click="btn_Paint_Click" Background="White" BorderBrush="#FF8F8E8E">
+                    <Image Source="../Resources/pen.png"></Image>
+                </Button>
+                <Button Grid.Row="2" x:Name="btn_Select"  HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="btn_Select_Click"  Background="White" BorderBrush="#FF898787">
+                    <Image Source="../Resources/select.png"></Image>
+                </Button>
+
+
+            </Grid>
+        </Expander>
 
     </Grid>
 </Window>

@@ -121,6 +121,44 @@ namespace MyPaint
             tb.Focus();
         }
 
-       
+        private void btnRedColor_Click(object sender, RoutedEventArgs e)
+        {
+            inkCanvas1.DefaultDrawingAttributes.Color = Colors.Red;
+        }
+
+        private void btnBlackColor_Click(object sender, RoutedEventArgs e)
+        {
+            inkCanvas1.DefaultDrawingAttributes.Color = Colors.Black;
+        }
+
+        private void btnBlueColor_Click(object sender, RoutedEventArgs e)
+        {
+            inkCanvas1.DefaultDrawingAttributes.Color = Colors.Blue;
+        }
+
+        private void btnYellowColor_Click(object sender, RoutedEventArgs e)
+        {
+            inkCanvas1.DefaultDrawingAttributes.Color = Colors.Yellow;
+        }
+
+        private void btnGreenColor_Click(object sender, RoutedEventArgs e)
+        {
+            inkCanvas1.DefaultDrawingAttributes.Color = Colors.Green;
+        }
+
+        private void btnOrangeColor_Click(object sender, RoutedEventArgs e)
+        {
+            inkCanvas1.DefaultDrawingAttributes.Color = Colors.Orange;
+        }
+
+        private void btnDarkBlueColor_Click(object sender, RoutedEventArgs e)
+        {
+            inkCanvas1.DefaultDrawingAttributes.Color = Colors.DarkBlue;
+        }
+
+        private void btnVioletColor_Click(object sender, RoutedEventArgs e)
+        {
+            inkCanvas1.DefaultDrawingAttributes.Color = Colors.Violet;
+        }
     }
 }
