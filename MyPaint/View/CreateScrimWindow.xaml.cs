@@ -19,24 +19,23 @@ namespace MyPaint.View
     /// <summary>
     /// Логика взаимодействия для CreateScrim.xaml
     /// </summary>
-    public partial class CreateScrim : Window
+    public partial class CreateScrimWindow : Window
     {
-        private CreateScrimVM context;
+        CreateScrimVM context;
         CreateScrimDelegate delegat;
-        public CreateScrim(CreateScrimDelegate delegat)
+        MenuRoomVM roomVM;
+        public CreateScrimWindow(CreateScrimDelegate delegat,MenuRoomVM roomVM)
         {
             InitializeComponent();
             context = new CreateScrimVM();
             DataContext = context;
             this.delegat = delegat;
+            this.roomVM = roomVM;
         }
 
         private void btn_CreateScrim_Click(object sender, RoutedEventArgs e)
         {
-            delegat(context.Name);
-
-            MainWindow mw = new MainWindow();
-            mw.Show();
+            delegat(context.Name, roomVM);
             this.Close();
         }
     }

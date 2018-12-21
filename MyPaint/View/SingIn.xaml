@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyPaint.View"
         mc:Ignorable="d"
-        Title="SingIn" Height="376.404" Width="355.72">
+        Title="SingIn" Height="404.042" Width="355.72">
     <Grid Margin="0,0,2,3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -14,62 +14,24 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="100"/>
+            <RowDefinition Height="30" />
             <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="40" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Label Grid.ColumnSpan="2" Grid.Row="0"  Content="Добро пожаловать " HorizontalAlignment="Center" Height="37" Margin="87,18,77,0" VerticalAlignment="Top" Width="182" FontSize="18" Foreground="#FF151010" FontWeight="Bold"/>
         <Label Grid.ColumnSpan="2" Grid.Row="1" Content="Войти" HorizontalAlignment="Stretch" Height="62" VerticalAlignment="Top"  FontSize="14" HorizontalContentAlignment="Center" BorderThickness="0,2,0,1" BorderBrush="#FF443A3A" VerticalContentAlignment="Bottom"/>
-        <TextBox Grid.ColumnSpan="2" Grid.Row="2" Width="300" Height="25" x:Name="user"   FontSize="16" BorderThickness="1" SelectionOpacity="5"  VerticalContentAlignment="Stretch" HorizontalScrollBarVisibility="Auto" Margin="24,0,22,0" >
-            <TextBox.Style>
-                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                    <Style.Resources>
-                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                            <VisualBrush.Visual>
-                                <Label Content="Email" Foreground="LightGray"/>
-                            </VisualBrush.Visual>
-                        </VisualBrush>
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
+        <Label Grid.Row="2" Grid.ColumnSpan="2" HorizontalContentAlignment="Center">Имя пользователя</Label>
+        <Label Grid.Row="4" Grid.ColumnSpan="2" HorizontalContentAlignment="Center">Пароль</Label>
+        <TextBox Grid.ColumnSpan="2" Grid.Row="3" Width="300" Height="25" x:Name="tb_UserName"   FontSize="16" BorderThickness="1" SelectionOpacity="5"  VerticalContentAlignment="Stretch" HorizontalScrollBarVisibility="Auto" Margin="24,0,22,0" >
+           
         </TextBox>
-        <TextBox Grid.Row="3" Grid.ColumnSpan="2" Height="25" x:Name="user1"   FontSize="14" BorderThickness="1" SelectionOpacity="5" Margin="23,8,22,8"  >
-            <TextBox.Style>
-                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                    <Style.Resources>
-                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                            <VisualBrush.Visual>
-                                <Label Content="Пароль" Foreground="LightGray"/>
-                            </VisualBrush.Visual>
-                        </VisualBrush>
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
-        <Button Grid.Row="4"  Grid.Column="1" Content="Вход" HorizontalAlignment="Left" Height="35"  VerticalAlignment="Top" Width="140" FontSize="14" Background="#FF3A3535" Foreground="White" BorderBrush="#FF131212" Name="btn_SingIn" Click="btn_SingIn_Click" Margin="10,41,0,0"  />
-        <Button Grid.Row="4"  Grid.Column="0" Content="Регистрация" HorizontalAlignment="Left" Height="35"  VerticalAlignment="Top" Width="140" BorderBrush="#FFC7BDBD" Background="#FFF1EFEF" Name="btn_SingUp" Click="btn_SingUp_Click" Margin="23,41,0,0"/>
+        <PasswordBox Grid.Row="5" Grid.ColumnSpan="2" Height="25" x:Name="pb_Password"   FontSize="14" BorderThickness="1" SelectionOpacity="5" Margin="23,8,22,8"  >
+            
+        </PasswordBox>
+        <Button Grid.Row="6"  Grid.Column="1" Content="Вход" HorizontalAlignment="Left" Height="35"  VerticalAlignment="Top" Width="140" FontSize="14" Background="#FF3A3535" Foreground="White" BorderBrush="#FF131212" Name="btn_SingIn" Click="btn_SingIn_Click" Margin="10,19,0,0"  />
+        <Button Grid.Row="6"  Grid.Column="0" Content="Регистрация" HorizontalAlignment="Left" Height="35"  VerticalAlignment="Top" Width="140" BorderBrush="#FFC7BDBD" Background="#FFF1EFEF" Name="btn_SingUp" Click="btn_SingUp_Click" Margin="23,19,0,0" />
 
     </Grid>
 </Window>

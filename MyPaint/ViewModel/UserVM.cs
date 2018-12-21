@@ -26,14 +26,14 @@ namespace MyPaint.ViewModel
                 OnPropertyChanged("Name");
             }
         }
-        public string Icon
-        {
-            get { return User.Icon; }
-            set
-            {
-                User.Icon = value;
-                OnPropertyChanged("Icon");
-            }
-        }
+        //public string Icon
+        //{
+        //    get { return User.Icon; }
+        //    set
+        //    {
+        //        User.Icon = value;
+        //        OnPropertyChanged("Icon");
+        //    }
+        //}
     }
 }

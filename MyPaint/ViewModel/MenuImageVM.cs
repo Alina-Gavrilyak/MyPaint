@@ -8,11 +8,11 @@ using MyPaint.Models;
 
 namespace MyPaint.ViewModel
 {
-    public class ImageVM : NotifyPropertyChanged
+    public class MenuImageVM : NotifyPropertyChanged
     {
         public Image Image { get; set; }
 
-        public ImageVM(Image image)
+        public MenuImageVM(Image image)
         {
             Image = image;
         }

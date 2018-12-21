@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace MyPaint.ViewModel
 {
-    public class RoomVM : NotifyPropertyChanged
+    public class MenuRoomVM : NotifyPropertyChanged
     {
         private bool isOpen;
-        private Room Room { get; set; }
-        public ObservableCollection<ScrimVM> ScrimVMs { get; set; }
+        public Room Room { get; set; }
+        public ObservableCollection<MenuScrimVM> ScrimVMs { get; set; }
         
         public bool IsOpen
         {
@@ -26,13 +26,13 @@ namespace MyPaint.ViewModel
                 OnPropertyChanged();
             }
         }
-        public RoomVM(Room room)
+        public MenuRoomVM(Room room)
         {
             Room = room;
-            ScrimVMs = new ObservableCollection<ScrimVM>();
+            ScrimVMs = new ObservableCollection<MenuScrimVM>();
             foreach (Scrim scrim in Room.Scrims)
             {
-                ScrimVMs.Add(new ScrimVM(scrim));
+                ScrimVMs.Add(new MenuScrimVM(scrim));
             }
         }
         public string Name
@@ -42,15 +42,6 @@ namespace MyPaint.ViewModel
             {
                 Room.Name = value;
                 OnPropertyChanged("Name");
-            }
-        }
-        public string Icon
-        {
-            get { return Room.Icon; }
-            set
-            {
-                Room.Icon = value;
-                OnPropertyChanged("Icon");
             }
         }
         public void ChangeName()

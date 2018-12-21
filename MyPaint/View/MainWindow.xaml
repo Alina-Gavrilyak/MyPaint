@@ -7,12 +7,22 @@
         mc:Ignorable="d"
         Title="MyPaint" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="380"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        <InkCanvas Strokes="{Binding Strokes}" Grid.RowSpan="2" Grid.ColumnSpan="4" x:Name="inkCanvas1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="#FFFDFBFB" Margin="1,0,-1,0"/>
 
-        <InkCanvas x:Name="inkCanvas1" HorizontalAlignment="Left" Height="399" Margin="55,10,0,0" VerticalAlignment="Top" Width="665"/>
+        <Label Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0"/>
 
-
-        <Expander Margin="0,0,737,189" ExpandDirection="Right">
-            <Grid>
+        <Expander Grid.Column="0" Grid.Row="0" ExpandDirection="Right" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Grid Width="37" Height="296">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -23,21 +33,20 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Grid.Row="0" x:Name="btnBlackColor"  Content="" Background="Black" Click="btnBlackColor_Click"/>
-                <Button Grid.Row="1" x:Name="btnRedColor" Click="btnRedColor_Click" Content="" Background="Red"/>
-                <Button Grid.Row="2" x:Name="btnOrangeColor"  Content="" Background="Orange"  VerticalAlignment="Top"   Click="btnOrangeColor_Click" Height="28"/>
-                <Button Grid.Row="5" x:Name="btnBlueColor"  Content="" Background="Blue" Click="btnBlueColor_Click"/>
-                <Button Grid.Row="3" x:Name="btnYellowColor"  Content="" Background="Yellow" Click="btnYellowColor_Click"/>
-                <Button Grid.Row="4" x:Name="btnGreenColor"  Content="" Background="Green" Click="btnGreenColor_Click"/>
-                <Button Grid.Row="6" x:Name="btnDarkBlueColor"  Content="" Background="DarkBlue" Click="btnDarkBlueColor_Click" />
-                <Button Grid.Row="7" x:Name="btnVioletColor"  Content="" Background="Violet" Click="btnVioletColor_Click" />
+                <Button Grid.Row="0"  x:Name="btnBlackColor"  Background="Black" Click="btnBlackColor_Click"/>
+                <Button Grid.Row="1"  x:Name="btnRedColor" Click="btnRedColor_Click" Background="Red"/>
+                <Button Grid.Row="2"  x:Name="btnOrangeColor"  Background="Orange"  Click="btnOrangeColor_Click" />
+                <Button Grid.Row="3"  x:Name="btnYellowColor" Background="Yellow" Click="btnYellowColor_Click"/>
+                <Button Grid.Row="4"  x:Name="btnGreenColor" Background="Green" Click="btnGreenColor_Click"/>
+                <Button Grid.Row="5"  x:Name="btnBlueColor"  Background="Blue" Click="btnBlueColor_Click"/>
+                <Button Grid.Row="6"  x:Name="btnDarkBlueColor" Background="DarkBlue" Click="btnDarkBlueColor_Click" />
+                <Button Grid.Row="7"  x:Name="btnVioletColor"  Background="Violet" Click="btnVioletColor_Click" />
             </Grid>
         </Expander>
 
-        <Expander ExpandDirection="Left" Margin="725,0,0,169" >
-            <Grid Margin="0,10,0,-2" Width="36">
+        <Expander Grid.Column="2" Grid.Row="0" ExpandDirection="Left"   VerticalAlignment="Top" HorizontalAlignment="Right" Grid.ColumnSpan="2" >
+            <Grid  >
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -45,10 +54,6 @@
                     <RowDefinition/>
 
                 </Grid.RowDefinitions>
-                <Button Grid.Row="5" x:Name="btn_Save" HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="btn_Save_Click" Background="White" BorderBrush="#FF939292">
-                    <Image Source="../Resources/save.png"></Image>
-                </Button>
-
                 <Button  Grid.Row="4" Click="Button_Click" HorizontalAlignment="Left"   VerticalAlignment="Top"  BorderBrush="#FFB4ACAC" Background="White">
                     <Image Source="../Resources/clear.png"></Image>
                 </Button>
@@ -69,5 +74,11 @@
             </Grid>
         </Expander>
 
+        <Button Grid.Column="2" Grid.Row="1"  BorderBrush="White" Background="White">
+            <Image Source="../Resources/save-file.png"></Image>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="3" x:Name="btn_Save" Click="btn_Save_Click" Background="White" BorderBrush="White">
+            <Image Source="../Resources/download.png"></Image>
+        </Button>
     </Grid>
 </Window>

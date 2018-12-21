@@ -24,10 +24,10 @@ namespace MyPaint.View
     {
         private CreateRoomVM context;
         CreateRoomDelegate delegat;
-        public AddRoom(CreateRoomDelegate delegat)
+        public AddRoom(CreateRoomDelegate delegat,string token)
         {
             InitializeComponent();
-            context = new CreateRoomVM();
+            context = new CreateRoomVM(token);
             DataContext = context;
             this.delegat = delegat;
         }

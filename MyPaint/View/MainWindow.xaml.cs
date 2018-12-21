@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyPaint.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace MyPaint
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        ScrimVM context;
+        public MainWindow(ScrimVM scrimVM)
         {
             InitializeComponent();
             //mcolor = new ColorRGB();
@@ -29,6 +31,9 @@ namespace MyPaint
             //mcolor.green = 0;
             //mcolor.blue = 0;
             //this.lbl1.Background = new SolidColorBrush(Color.FromRgb(mcolor.red, mcolor.green, mcolor.blue));
+            context = scrimVM;
+            DataContext = context;
+
         }
         //public ColorRGB mcolor { get; set; }
         //public Color clr { get; set; }
@@ -101,7 +106,7 @@ namespace MyPaint
 
         private void btn_Eraser_Click(object sender, RoutedEventArgs e)
         {
-            this.inkCanvas1.EditingMode = InkCanvasEditingMode.EraseByPoint;
+            this.inkCanvas1.EditingMode = InkCanvasEditingMode.EraseByStroke;
         }
 
         private void btn_AddText_Click(object sender, RoutedEventArgs e)
@@ -159,6 +164,11 @@ namespace MyPaint
         private void btnVioletColor_Click(object sender, RoutedEventArgs e)
         {
             inkCanvas1.DefaultDrawingAttributes.Color = Colors.Violet;
+        }
+
+        private void inkCanvas1_StrokeErased(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

@@ -8,7 +8,8 @@ namespace MyPaint.Model
 {
     public class Scrim
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
+        public List<StrokeId> StrokeIds { get; set; } = new List<StrokeId>();
     }
 }

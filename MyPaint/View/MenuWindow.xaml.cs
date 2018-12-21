@@ -1,9 +1,12 @@
-﻿using MyPaint.Model;
+﻿using ClientServerClassLibrary;
+using MyPaint.Model;
 using MyPaint.View;
 using MyPaint.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,12 +26,23 @@ namespace MyPaint
     public partial class MenuWindow : Window
     {
         private MenuVM context;
-        public MenuWindow()
+
+        HttpClient client;
+        string token;
+
+        public MenuWindow(string token)
         {
             InitializeComponent();
 
-            context = new MenuVM();
+            this.token = token;
+
+            context = new MenuVM(token);
             DataContext = context;
+            context.SetUpRoomVMs();
+
+            client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:51769");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         }
 
         private void btnClosePopup_Click(object sender, RoutedEventArgs e)
@@ -36,38 +50,68 @@ namespace MyPaint
             RoomListBox.UnselectAll();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CreateRoomButton_Click(object sender, RoutedEventArgs e)
         {
             CreateRoomDelegate delegat = CreateRoom;
-            
-
-            AddRoom ar = new AddRoom(delegat);
+            AddRoom ar = new AddRoom(delegat,token);
             ar.Show();
 
         }
 
         public delegate void CreateRoomDelegate(List<User> users, string name);
-        public void CreateRoom(List<User> users, string name)
+        public async void CreateRoom(List<User> users, string name)
         {
-            RoomVM roomVM = new RoomVM(new Room() {Name=name, Users= users});
-            context.RoomVMs.Add(roomVM);
+            List<Guid> ids = new List<Guid>();
+            foreach (User u in users)
+                ids.Add(u.Id);
+            HttpResponseMessage response = await client.PostAsJsonAsync("api/Paint/AddRoom", new AddRoomData() { Name = name, UsersId = ids });
+            if (response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                Guid roomId = JsonConvert.DeserializeObject<Guid>(json);
+
+                MenuRoomVM roomVM = new MenuRoomVM(new Room() { Name = name, Users = users, Id= roomId });
+                context.RoomVMs.Add(roomVM);
+            }
+            else
+                MessageBox.Show(response.RequestMessage.ToString(), "RequestError");
+
+
         }
 
-        public delegate void CreateScrimDelegate(string name);
-        public void CreateScrim(string name)
+        public delegate void CreateScrimDelegate(string name, MenuRoomVM roomVM);
+        public async void CreateScrim(string name, MenuRoomVM roomVM)
         {
-            ScrimVM scrimVM = new ScrimVM(new Scrim() {Name = name});
-            context.SelectedRoomVM.ScrimVMs.Add(scrimVM);
+            HttpResponseMessage response = await client.PostAsJsonAsync("api/Paint/AddBoard", new AddBoardData() { BoardName = name, RoomId = roomVM.Room.Id });
+            if (response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                Guid scrimId = JsonConvert.DeserializeObject<Guid>(json);
 
-            context.SelectedRoomVM = null;
+                Scrim s = new Scrim() { Name = name, Id = scrimId };
+
+                MenuScrimVM scrimVM = new MenuScrimVM(s);
+                roomVM.ScrimVMs.Add(scrimVM);
+
+                MainWindow mw = new MainWindow(new ScrimVM(s,token));
+                mw.Show();
+            }
+            else
+                MessageBox.Show(response.RequestMessage.ToString(), "RequestError");
         }
         private void btnAddScrim_Click(object sender, RoutedEventArgs e)
         {
             CreateScrimDelegate delegat = CreateScrim;
-
-            CreateScrim cs = new CreateScrim(delegat);
+            CreateScrimWindow cs = new CreateScrimWindow(delegat, context.SelectedRoomVM);
+            context.SelectedRoomVM = null;
             cs.Show();
-            context.SelectedRoomVM.IsOpen = false;
+        }
+
+        private void OpenScrimeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Scrim s =((MenuScrimVM)((Button)sender).DataContext).Scrim;
+            MainWindow mw = new MainWindow(new ScrimVM(s,token));
+            mw.Show();
         }
     }
 }
